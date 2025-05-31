@@ -1,5 +1,5 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
-    <Style src="../UI/USS/UnityAssetNamingConventionEnforcerToolWindow.uss" />
+    <Style src="project://database/Packages/com.razluta.unity-asset-naming-convention-enforcer-tool/Editor/UI/USS/UnityAssetNamingConventionEnforcerToolWindow.uss" />
     <ui:VisualElement name="root-container" style="flex-grow: 1; padding-left: 10px; padding-right: 10px; padding-top: 10px; padding-bottom: 10px;">
         
         <!-- Header -->
