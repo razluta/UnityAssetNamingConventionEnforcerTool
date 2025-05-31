@@ -1,22 +1,22 @@
-
-"name": "com.razluta.unity-asset-naming-convention-enforcer-tool",
-"version": "1.0.0",
-"displayName": "Unity Asset Naming Convention Enforcer Tool",
-"description": "A Unity tool for enforcing consistent asset naming conventions through an automated wizard interface.",
-"unity": "2022.3",
-"unityRelease": "0f1",
-"documentationUrl": "https://github.com/razluta/UnityAssetNamingConventionEnforcerTool#readme",
-"changelogUrl": "https://github.com/razluta/UnityAssetNamingConventionEnforcerTool/blob/main/CHANGELOG.md",
-"licensesUrl": "https://github.com/razluta/UnityAssetNamingConventionEnforcerTool/blob/main/LICENSE.md",
-"keywords": [
-"tools",
-"editor",
-"naming",
-"convention",
-"asset-management"
-],
-"author": {
-"name": "Razluta",
-"url": "https://razluta.com"
-}
+{
+  "name": "com.razluta.unity-asset-naming-convention-enforcer-tool",
+  "version": "1.0.0",
+  "displayName": "Unity Asset Naming Convention Enforcer Tool",
+  "description": "A Unity tool for enforcing consistent asset naming conventions through an automated wizard interface.",
+  "unity": "2022.3",
+  "unityRelease": "0f1",
+  "documentationUrl": "https://github.com/razluta/UnityAssetNamingConventionEnforcerTool#readme",
+  "changelogUrl": "https://github.com/razluta/UnityAssetNamingConventionEnforcerTool/blob/main/CHANGELOG.md",
+  "licensesUrl": "https://github.com/razluta/UnityAssetNamingConventionEnforcerTool/blob/main/LICENSE.md",
+  "keywords": [
+    "tools",
+    "editor",
+    "naming",
+    "convention",
+    "asset-management"
+  ],
+  "author": {
+    "name": "Razluta",
+    "url": "https://razluta.com"
+  }
 }
