@@ -19,10 +19,10 @@ A Unity tool for enforcing consistent asset naming conventions through an automa
 1. Select one or more assets in the Project window
 2. Open `Tools/Razluta/Unity Asset Naming Convention Enforcer Tool`
 3. Follow the wizard steps:
-    - Choose Game Category (CHAR, WEAP, ENV, PROP, GUI, AUDIO, VFX)
-    - Choose Asset Type (Prefab, Model, Texture, etc.)
-    - Review and edit the generated name
-    - Apply the rename
+   - Choose Game Category (CHAR, WEAP, ENV, PROP, GUI, AUDIO, VFX)
+   - Choose Asset Type (Prefab, Model, Texture, etc.)
+   - Review and edit the generated name
+   - Apply the rename
 
 ## Naming Convention
 
@@ -34,6 +34,51 @@ Assets follow this format: `[GameCategory]_[AssetType]_[AssetName]_[Variant]_[St
 - `ENV_Texture_Ground_Grass_Dry_2K`
 - `GUI_Prefab_Button_Main_Normal_Large`
 
+## Game Categories
+
+- **CHAR** - Characters
+- **WEAP** - Weapons
+- **ENV** - Environment assets
+- **PROP** - Props
+- **GUI** - UI elements
+- **AUDIO** - Sound effects and music
+- **VFX** - Visual effects
+
+## Asset Types
+
+- **Prefab** - Unity prefabs
+- **Model** - 3D models (FBX, OBJ, etc.)
+- **SkinnedModel** - Rigged/animated models
+- **Animation** - Animation clips
+- **Animator** - Animator controllers
+- **Texture** - Images and textures
+- **Font** - Typography assets
+- **Sound** - Audio clips (short)
+- **Music** - Audio clips (long/background)
+- **Curve** - Animation curves
+- **Data** - ScriptableObjects and data files
+- **Preset** - Unity presets
+- **Template** - Template assets
+- **Atlas** - Texture atlases
+- **Light** - Lighting assets
+- **AI** - AI behavior assets
+- **Level** - Scene/level assets
+- **Loc** - Localization files
+
+## Features
+
+- **Smart Name Processing**: Automatically detects variants, states, and quality markers
+- **File Type Detection**: Automatically suggests asset types based on file extensions
+- **Real-time Validation**: Prevents invalid asset names
+- **Name Breakdown**: Visual breakdown of how the final name is constructed
+- **Multi-asset Support**: Process multiple assets individually through the wizard
+- **Modern UI**: Built with Unity's UIToolkit for a responsive interface
+
 ## Requirements
 
 - Unity 2022.3 or higher
+- UIToolkit support
+
+## License
+
+[Your License Here]
