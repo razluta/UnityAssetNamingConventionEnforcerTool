@@ -1,0 +1,72 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <Style src="../UI/USS/UnityAssetNamingConventionEnforcerToolWindow.uss" />
+    <ui:VisualElement name="root-container" style="flex-grow: 1; padding-left: 10px; padding-right: 10px; padding-top: 10px; padding-bottom: 10px;">
+        
+        <!-- Header -->
+        <ui:Label text="Unity Asset Naming Convention Enforcer Tool" name="header-label" class="header" />
+        <ui:Label text="Enforce consistent naming conventions for your Unity assets" name="subtitle-label" class="subtitle" />
+        
+        <!-- No Selection State -->
+        <ui:VisualElement name="no-selection-container" class="section-container">
+            <ui:Label text="Please select one or more assets in the Project window to begin." name="no-selection-label" class="info-text" />
+        </ui:VisualElement>
+        
+        <!-- Main Wizard Container -->
+        <ui:VisualElement name="wizard-container" class="section-container" style="display: none;">
+            
+            <!-- Current Asset Info -->
+            <ui:VisualElement name="current-asset-info" class="info-section">
+                <ui:Label text="Current Asset:" class="section-header" />
+                <ui:Label name="current-asset-name" class="asset-name" />
+                <ui:Label name="asset-progress" class="progress-text" />
+            </ui:VisualElement>
+            
+            <!-- Step 1: Game Category Selection -->
+            <ui:VisualElement name="category-step" class="wizard-step">
+                <ui:Label text="Step 1: Select Game Category" class="step-header" />
+                <ui:Label text="Choose the primary category for this asset:" class="step-description" />
+                <uie:EnumField name="category-field" type="Razluta.UnityAssetNamingConventionEnforcerTool.Editor.GameCategory, Razluta.UnityAssetNamingConventionEnforcerTool.Editor" class="enum-field" />
+                <ui:Button name="category-next-btn" text="Next" class="next-button" />
+            </ui:VisualElement>
+            
+            <!-- Step 2: Asset Type Selection -->
+            <ui:VisualElement name="asset-type-step" class="wizard-step" style="display: none;">
+                <ui:Label text="Step 2: Select Asset Type" class="step-header" />
+                <ui:Label text="Choose the type of asset:" class="step-description" />
+                <uie:EnumField name="asset-type-field" type="Razluta.UnityAssetNamingConventionEnforcerTool.Editor.AssetType, Razluta.UnityAssetNamingConventionEnforcerTool.Editor" class="enum-field" />
+                <ui:VisualElement class="button-row">
+                    <ui:Button name="asset-type-back-btn" text="Back" class="back-button" />
+                    <ui:Button name="asset-type-next-btn" text="Next" class="next-button" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+            
+            <!-- Step 3: Final Name Review -->
+            <ui:VisualElement name="final-name-step" class="wizard-step" style="display: none;">
+                <ui:Label text="Step 3: Review and Edit Final Name" class="step-header" />
+                <ui:Label text="Review the generated name and make any final adjustments:" class="step-description" />
+                
+                <ui:VisualElement class="name-breakdown">
+                    <ui:Label text="Name Breakdown:" class="breakdown-header" />
+                    <ui:VisualElement name="breakdown-container" class="breakdown-content" />
+                </ui:VisualElement>
+                
+                <ui:TextField name="final-name-field" label="Final Name:" class="final-name-field" />
+                <ui:Label name="validation-message" class="validation-message" />
+                
+                <ui:VisualElement class="button-row">
+                    <ui:Button name="final-back-btn" text="Back" class="back-button" />
+                    <ui:Button name="apply-btn" text="Apply Rename" class="apply-button" />
+                    <ui:Button name="skip-btn" text="Skip This Asset" class="skip-button" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+            
+        </ui:VisualElement>
+        
+        <!-- Batch Processing Controls -->
+        <ui:VisualElement name="batch-controls" class="section-container" style="display: none;">
+            <ui:Button name="process-all-btn" text="Process All Selected Assets" class="process-all-button" />
+            <ui:Button name="reset-btn" text="Reset Selection" class="reset-button" />
+        </ui:VisualElement>
+        
+    </ui:VisualElement>
+</ui:UXML>
