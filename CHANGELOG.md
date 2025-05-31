@@ -11,21 +11,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Initial release** of Unity Asset Naming Convention Enforcer Tool
 - **Wizard-based interface** for step-by-step asset renaming process
 - **Game Category selection** with predefined categories:
-    - CHAR (Characters)
-    - WEAP (Weapons)
-    - ENV (Environment assets)
-    - PROP (Props)
-    - GUI (UI elements)
-    - AUDIO (Sound effects and music)
-    - VFX (Visual effects)
+  - CHAR (Characters)
+  - WEAP (Weapons)
+  - ENV (Environment assets)
+  - PROP (Props)
+  - GUI (UI elements)
+  - AUDIO (Sound effects and music)
+  - VFX (Visual effects)
 - **Asset Type detection** with automatic inference from file extensions:
-    - Prefab, Model, SkinnedModel, Animation, Animator
-    - Texture, Font, Sound, Music, Curve, Data
-    - Preset, Template, Atlas, Light, AI, Level, Loc
+  - Prefab, Model, SkinnedModel, Animation, Animator
+  - Texture, Font, Sound, Music, Curve, Data
+  - Preset, Template, Atlas, Light, AI, Level, Loc
 - **Intelligent name processing** that automatically detects and categorizes:
-    - Variants (01, 02, a, b, alt)
-    - States (idle, active, normal, broken)
-    - Size/Quality markers (1K, 2K, low, high, ultra)
+  - Variants (01, 02, a, b, alt)
+  - States (idle, active, normal, broken)
+  - Size/Quality markers (1K, 2K, low, high, ultra)
 - **Real-time name validation** to prevent invalid asset names
 - **Name breakdown visualization** showing how the final name is constructed
 - **Multi-asset processing** with individual wizard flow for each asset
@@ -43,7 +43,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Technical Details
 - **Unity Version**: Requires Unity 2022.3 or higher
-- **Package ID**: `com.razluta.UnityAssetNamingConventionEnforcerTool`
+- **Package ID**: `com.razluta.unity-asset-naming-convention-enforcer-tool`
 - **Assembly Definition**: Editor-only with proper namespace isolation
 - **UI Framework**: Built with Unity UIToolkit for modern editor integration
 - **Installation**: Available via Unity Package Manager using Git URL
