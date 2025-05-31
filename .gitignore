@@ -86,7 +86,6 @@ crashlytics-build.properties
 
 
 # Unity generated
-*.meta
 **/Library/
 **/Temp/
 **/Obj/
