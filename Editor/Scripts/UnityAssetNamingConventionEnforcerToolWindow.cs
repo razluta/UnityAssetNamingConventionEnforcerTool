@@ -26,7 +26,9 @@ namespace Razluta.UnityAssetNamingConventionEnforcerTool.Editor
         
         // UI Elements
         private Label m_CurrentAssetNameLabel;
+        private Label m_CurrentAssetPathLabel;
         private Label m_AssetProgressLabel;
+        private VisualElement m_AssetPreview;
         private EnumField m_CategoryField;
         private EnumField m_AssetTypeField;
         private TextField m_FinalNameField;
@@ -85,7 +87,9 @@ namespace Razluta.UnityAssetNamingConventionEnforcerTool.Editor
             m_FinalNameStep = m_RootContainer.Q<VisualElement>("final-name-step");
             
             m_CurrentAssetNameLabel = m_RootContainer.Q<Label>("current-asset-name");
+            m_CurrentAssetPathLabel = m_RootContainer.Q<Label>("current-asset-path");
             m_AssetProgressLabel = m_RootContainer.Q<Label>("asset-progress");
+            m_AssetPreview = m_RootContainer.Q<VisualElement>("asset-preview");
             
             m_CategoryField = m_RootContainer.Q<EnumField>("category-field");
             m_AssetTypeField = m_RootContainer.Q<EnumField>("asset-type-field");
@@ -186,8 +190,67 @@ namespace Razluta.UnityAssetNamingConventionEnforcerTool.Editor
 
         private void UpdateCurrentAssetInfo()
         {
-            m_CurrentAssetNameLabel.text = $"Original: {m_CurrentAssetData.originalName}";
+            m_CurrentAssetNameLabel.text = $"Original name: {m_CurrentAssetData.originalName}";
+            m_CurrentAssetPathLabel.text = $"Current path: {m_CurrentAssetData.originalPath}";
             m_AssetProgressLabel.text = $"Asset {m_CurrentAssetIndex + 1} of {m_SelectedAssetPaths.Count}";
+            
+            UpdateAssetPreview();
+        }
+
+        private void UpdateAssetPreview()
+        {
+            // Clear existing preview
+            m_AssetPreview.Clear();
+            
+            // Load the asset
+            var asset = AssetDatabase.LoadAssetAtPath<UnityEngine.Object>(m_CurrentAssetData.originalPath);
+            if (asset == null) return;
+            
+            // Create preview based on asset type
+            Texture2D previewTexture = null;
+            
+            // Try to get asset preview
+            previewTexture = AssetPreview.GetAssetPreview(asset);
+            
+            // If no preview available, try to get mini thumbnail
+            if (previewTexture == null)
+            {
+                previewTexture = AssetPreview.GetMiniThumbnail(asset);
+            }
+            
+            // If we have a preview texture, create an Image element
+            if (previewTexture != null)
+            {
+                var previewImage = new UnityEngine.UIElements.Image();
+                previewImage.image = previewTexture;
+                previewImage.scaleMode = ScaleMode.ScaleToFit;
+                previewImage.style.width = 64;
+                previewImage.style.height = 64;
+                m_AssetPreview.Add(previewImage);
+            }
+            else
+            {
+                // If no preview available, show asset type icon or placeholder
+                var icon = AssetDatabase.GetCachedIcon(m_CurrentAssetData.originalPath);
+                if (icon != null)
+                {
+                    var iconImage = new UnityEngine.UIElements.Image();
+                    iconImage.image = icon;
+                    iconImage.scaleMode = ScaleMode.ScaleToFit;
+                    iconImage.style.width = 64;
+                    iconImage.style.height = 64;
+                    m_AssetPreview.Add(iconImage);
+                }
+                else
+                {
+                    // Show placeholder text
+                    var placeholderLabel = new Label("No Preview");
+                    placeholderLabel.style.unityTextAlign = TextAnchor.MiddleCenter;
+                    placeholderLabel.style.color = new Color(0.7f, 0.7f, 0.7f, 1f);
+                    placeholderLabel.style.fontSize = 10;
+                    m_AssetPreview.Add(placeholderLabel);
+                }
+            }
         }
 
         private void ShowStep(int stepIndex)

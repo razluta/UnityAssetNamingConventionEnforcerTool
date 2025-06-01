@@ -17,8 +17,14 @@
             <!-- Current Asset Info -->
             <ui:VisualElement name="current-asset-info" class="info-section">
                 <ui:Label text="Current Asset:" class="section-header" />
-                <ui:Label name="current-asset-name" class="asset-name" />
-                <ui:Label name="asset-progress" class="progress-text" />
+                <ui:VisualElement name="asset-preview-container" class="asset-preview-container">
+                    <ui:VisualElement name="asset-preview" class="asset-preview" />
+                    <ui:VisualElement name="asset-details">
+                        <ui:Label name="current-asset-name" class="asset-name" />
+                        <ui:Label name="current-asset-path" class="asset-path" />
+                        <ui:Label name="asset-progress" class="progress-text" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
             </ui:VisualElement>
             
             <!-- Step 1: Game Category Selection -->
