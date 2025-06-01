@@ -2,7 +2,7 @@
 
 A Unity tool for enforcing consistent asset naming conventions through an automated wizard interface.
 
-![Unity Asset Naming Convention Enforcer Tool](SampleScreenshot01.png)
+![Unity Asset Naming Convention Enforcer Tool](SampleScreenshot01.gif)
 
 ## Installation
 
