@@ -185,18 +185,33 @@ namespace Razluta.UnityAssetNamingConventionEnforcerTool.Editor
             };
 
             if (!string.IsNullOrEmpty(data.assetName))
-                parts.Add(data.assetName);
+                parts.Add(CapitalizeWords(data.assetName));
             
             if (!string.IsNullOrEmpty(data.variant))
-                parts.Add(data.variant);
+                parts.Add(CapitalizeWords(data.variant));
             
             if (!string.IsNullOrEmpty(data.state))
-                parts.Add(data.state);
+                parts.Add(CapitalizeWords(data.state));
             
             if (!string.IsNullOrEmpty(data.sizeQuality))
-                parts.Add(data.sizeQuality);
+                parts.Add(CapitalizeWords(data.sizeQuality));
 
             return string.Join("_", parts);
+        }
+
+        private static string CapitalizeWords(string input)
+        {
+            if (string.IsNullOrEmpty(input)) return input;
+            
+            var words = input.Split('_');
+            for (int i = 0; i < words.Length; i++)
+            {
+                if (!string.IsNullOrEmpty(words[i]))
+                {
+                    words[i] = char.ToUpper(words[i][0]) + words[i].Substring(1).ToLower();
+                }
+            }
+            return string.Join("_", words);
         }
 
         public static string ValidateAssetName(string name)

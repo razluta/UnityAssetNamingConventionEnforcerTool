@@ -129,6 +129,14 @@
     background-color: rgb(112, 112, 112);
 }
 
+.reset-button {
+    background-color: rgb(140, 80, 60);
+}
+
+.reset-button:hover {
+    background-color: rgb(160, 100, 80);
+}
+
 .name-breakdown {
     background-color: rgb(48, 48, 48);
     border-radius: 3px;

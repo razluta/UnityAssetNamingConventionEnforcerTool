@@ -57,4 +57,17 @@ namespace Razluta.UnityAssetNamingConventionEnforcerTool.Editor
             this.originalPath = originalPath;
         }
     }
+
+    [Serializable]
+    public class BatchProcessingSettings
+    {
+        public GameCategory gameCategory;
+        public AssetType assetType;
+        public bool isSet;
+        
+        public BatchProcessingSettings()
+        {
+            isSet = false;
+        }
+    }
 }

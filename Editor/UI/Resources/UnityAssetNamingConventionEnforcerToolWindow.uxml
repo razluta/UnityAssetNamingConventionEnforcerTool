@@ -60,6 +60,7 @@
                 <ui:Label name="validation-message" class="validation-message" />
                 
                 <ui:VisualElement class="button-row">
+                    <ui:Button name="reset-asset-btn" text="Reset This Asset" class="reset-button" />
                     <ui:Button name="final-back-btn" text="Back" class="back-button" />
                     <ui:Button name="apply-btn" text="Apply Rename" class="apply-button" />
                     <ui:Button name="skip-btn" text="Skip This Asset" class="skip-button" />

@@ -23,6 +23,7 @@ namespace Razluta.UnityAssetNamingConventionEnforcerTool.Editor
         private List<string> m_SelectedAssetPaths;
         private int m_CurrentAssetIndex;
         private AssetNamingData m_CurrentAssetData;
+        private BatchProcessingSettings m_BatchSettings;
         
         // UI Elements
         private Label m_CurrentAssetNameLabel;
@@ -107,6 +108,7 @@ namespace Razluta.UnityAssetNamingConventionEnforcerTool.Editor
             m_RootContainer.Q<Button>("final-back-btn").clicked += OnFinalBack;
             m_RootContainer.Q<Button>("apply-btn").clicked += OnApplyRename;
             m_RootContainer.Q<Button>("skip-btn").clicked += OnSkipAsset;
+            m_RootContainer.Q<Button>("reset-asset-btn").clicked += OnResetCurrentAsset;
             
             // Batch controls
             m_RootContainer.Q<Button>("process-all-btn").clicked += OnProcessAll;
@@ -159,13 +161,23 @@ namespace Razluta.UnityAssetNamingConventionEnforcerTool.Editor
         private void StartWizard()
         {
             m_CurrentAssetIndex = 0;
+            m_BatchSettings = new BatchProcessingSettings();
             ProcessCurrentAsset();
             
             m_NoSelectionContainer.style.display = DisplayStyle.None;
             m_WizardContainer.style.display = DisplayStyle.Flex;
             m_BatchControls.style.display = DisplayStyle.Flex;
             
-            ShowStep(0); // Start with category selection
+            // For multiple assets, skip to final step if batch settings are already configured
+            if (m_SelectedAssetPaths.Count > 1 && m_BatchSettings.isSet)
+            {
+                ApplyBatchSettings();
+                ShowStep(2);
+            }
+            else
+            {
+                ShowStep(0); // Start with category selection for single asset or first asset in batch
+            }
         }
 
         private void ProcessCurrentAsset()
@@ -274,13 +286,45 @@ namespace Razluta.UnityAssetNamingConventionEnforcerTool.Editor
         private void OnAssetTypeNext()
         {
             m_CurrentAssetData.assetType = (AssetType)m_AssetTypeField.value;
+            
+            // Store batch settings if processing multiple assets
+            if (m_SelectedAssetPaths.Count > 1)
+            {
+                m_BatchSettings.gameCategory = m_CurrentAssetData.gameCategory;
+                m_BatchSettings.assetType = m_CurrentAssetData.assetType;
+                m_BatchSettings.isSet = true;
+            }
+            
             GenerateNamePreview();
             ShowStep(2);
         }
 
         private void OnFinalBack()
         {
-            ShowStep(1);
+            // Only allow going back if we're not in batch mode or if batch settings aren't set
+            if (m_SelectedAssetPaths.Count == 1 || !m_BatchSettings.isSet)
+            {
+                ShowStep(1);
+            }
+        }
+
+        private void OnResetCurrentAsset()
+        {
+            // Reset this specific asset to go through the full wizard
+            if (m_SelectedAssetPaths.Count > 1)
+            {
+                // Temporarily disable batch settings for this asset
+                var tempBatchSettings = m_BatchSettings.isSet;
+                m_BatchSettings.isSet = false;
+                
+                ShowStep(0);
+                
+                // Don't restore batch settings - let user go through the process
+            }
+            else
+            {
+                ShowStep(0);
+            }
         }
 
         private void OnCategoryChanged(ChangeEvent<System.Enum> evt)
@@ -400,11 +444,36 @@ namespace Razluta.UnityAssetNamingConventionEnforcerTool.Editor
             if (m_CurrentAssetIndex < m_SelectedAssetPaths.Count)
             {
                 ProcessCurrentAsset();
-                ShowStep(0); // Reset to first step for next asset
+                
+                // For multiple assets with batch settings, go directly to final step
+                if (m_SelectedAssetPaths.Count > 1 && m_BatchSettings.isSet)
+                {
+                    ApplyBatchSettings();
+                    ShowStep(2);
+                }
+                else
+                {
+                    ShowStep(0); // Reset to first step for next asset
+                }
             }
             else
             {
                 OnAllAssetsProcessed();
+            }
+        }
+
+        private void ApplyBatchSettings()
+        {
+            if (m_BatchSettings.isSet)
+            {
+                m_CurrentAssetData.gameCategory = m_BatchSettings.gameCategory;
+                m_CurrentAssetData.assetType = m_BatchSettings.assetType;
+                
+                // Update the UI fields to reflect the batch settings
+                m_CategoryField.value = m_BatchSettings.gameCategory;
+                m_AssetTypeField.value = m_BatchSettings.assetType;
+                
+                GenerateNamePreview();
             }
         }
 
@@ -418,15 +487,22 @@ namespace Razluta.UnityAssetNamingConventionEnforcerTool.Editor
 
         private void OnProcessAll()
         {
-            // This could be extended to process all assets with the same settings
-            // For now, we'll just show a message
-            EditorUtility.DisplayDialog("Batch Processing", 
-                "Individual processing ensures each asset gets proper attention. " +
-                "Continue through the wizard for each asset.", "OK");
+            if (m_SelectedAssetPaths.Count > 1 && !m_BatchSettings.isSet)
+            {
+                EditorUtility.DisplayDialog("Batch Processing", 
+                    "Please set the category and type for the first asset to establish batch settings for all selected assets.", "OK");
+            }
+            else
+            {
+                EditorUtility.DisplayDialog("Batch Processing", 
+                    "Individual processing ensures each asset gets proper attention. " +
+                    "Continue through the wizard for each asset.", "OK");
+            }
         }
 
         private void OnReset()
         {
+            m_BatchSettings = new BatchProcessingSettings();
             Selection.activeObject = null;
             UpdateUI();
         }

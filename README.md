@@ -2,6 +2,8 @@
 
 A Unity tool for enforcing consistent asset naming conventions through an automated wizard interface.
 
+![Unity Asset Naming Convention Enforcer Tool](SampleScreenshot01.png)
+
 ## Installation
 
 ### Via Git URL (Recommended)
@@ -18,11 +20,12 @@ A Unity tool for enforcing consistent asset naming conventions through an automa
 
 1. Select one or more assets in the Project window
 2. Open `Tools/Razluta/Unity Asset Naming Convention Enforcer Tool`
-3. Follow the wizard steps:
-   - Choose Game Category (CHAR, WEAP, ENV, PROP, GUI, AUDIO, VFX)
-   - Choose Asset Type (Prefab, Model, Texture, etc.)
-   - Review and edit the generated name
-   - Apply the rename
+3. Follow the wizard:
+   - **Single Asset**: Go through all steps (Category → Type → Review)
+   - **Multiple Assets**: Set category and type once, then review each asset individually
+   - Use "Reset This Asset" to restart the wizard for a specific asset
+   - Review and edit the generated name for each asset
+   - Apply the rename or skip assets as needed
 
 ## Naming Convention
 
@@ -33,6 +36,11 @@ Assets follow this format: `[GameCategory]_[AssetType]_[AssetName]_[Variant]_[St
 - `WEAP_Model_Sword_Steel_Sharp_High`
 - `ENV_Texture_Ground_Grass_Dry_2K`
 - `GUI_Prefab_Button_Main_Normal_Large`
+
+### Capitalization Rules
+The tool automatically capitalizes the first letter of each word in the asset name components:
+- Input: `"Dan maGICAL SwoRD FRom fire"` → Output: `"Dan_Magical_Sword_From_Fire"`
+- Input: `"someWeirdCamelCase"` → Output: `"Some_Weird_Camel_Case"`
 
 ## Game Categories
 
@@ -67,11 +75,14 @@ Assets follow this format: `[GameCategory]_[AssetType]_[AssetName]_[Variant]_[St
 
 ## Features
 
-- **Smart Name Processing**: Automatically detects variants, states, and quality markers
+- **Smart Batch Processing**: For multiple assets, set category and type once, then review each asset individually
+- **Intelligent Name Processing**: Automatically detects variants, states, and quality markers
+- **Consistent Capitalization**: Automatically capitalizes the first letter of each word component
+- **Asset Preview**: Shows thumbnail previews of assets being renamed (models, textures, etc.)
 - **File Type Detection**: Automatically suggests asset types based on file extensions
 - **Real-time Validation**: Prevents invalid asset names
 - **Name Breakdown**: Visual breakdown of how the final name is constructed
-- **Multi-asset Support**: Process multiple assets individually through the wizard
+- **Flexible Workflow**: Reset individual assets to go through full wizard if needed
 - **Modern UI**: Built with Unity's UIToolkit for a responsive interface
 
 ## Requirements
