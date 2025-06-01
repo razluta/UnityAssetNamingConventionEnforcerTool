@@ -17,13 +17,11 @@
             <!-- Current Asset Info -->
             <ui:VisualElement name="current-asset-info" class="info-section">
                 <ui:Label text="Current Asset:" class="section-header" />
-                <ui:VisualElement name="asset-preview-container" class="asset-preview-container">
-                    <ui:VisualElement name="asset-preview" class="asset-preview" />
-                    <ui:VisualElement name="asset-details">
-                        <ui:Label name="current-asset-name" class="asset-name" />
-                        <ui:Label name="current-asset-path" class="asset-path" />
-                        <ui:Label name="asset-progress" class="progress-text" />
-                    </ui:VisualElement>
+                <ui:VisualElement name="asset-preview" class="asset-preview-large" />
+                <ui:VisualElement name="asset-details">
+                    <ui:Label name="current-asset-name" class="asset-name" />
+                    <ui:Label name="current-asset-path" class="asset-path" />
+                    <ui:Label name="asset-progress" class="progress-text" />
                 </ui:VisualElement>
             </ui:VisualElement>
             

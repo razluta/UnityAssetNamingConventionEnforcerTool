@@ -236,8 +236,8 @@ namespace Razluta.UnityAssetNamingConventionEnforcerTool.Editor
                 var previewImage = new UnityEngine.UIElements.Image();
                 previewImage.image = previewTexture;
                 previewImage.scaleMode = ScaleMode.ScaleToFit;
-                previewImage.style.width = 64;
-                previewImage.style.height = 64;
+                previewImage.style.width = Length.Percent(100);
+                previewImage.style.height = Length.Percent(100);
                 m_AssetPreview.Add(previewImage);
             }
             else
@@ -249,8 +249,8 @@ namespace Razluta.UnityAssetNamingConventionEnforcerTool.Editor
                     var iconImage = new UnityEngine.UIElements.Image();
                     iconImage.image = icon;
                     iconImage.scaleMode = ScaleMode.ScaleToFit;
-                    iconImage.style.width = 64;
-                    iconImage.style.height = 64;
+                    iconImage.style.width = Length.Percent(100);
+                    iconImage.style.height = Length.Percent(100);
                     m_AssetPreview.Add(iconImage);
                 }
                 else
@@ -259,7 +259,8 @@ namespace Razluta.UnityAssetNamingConventionEnforcerTool.Editor
                     var placeholderLabel = new Label("No Preview");
                     placeholderLabel.style.unityTextAlign = TextAnchor.MiddleCenter;
                     placeholderLabel.style.color = new Color(0.7f, 0.7f, 0.7f, 1f);
-                    placeholderLabel.style.fontSize = 10;
+                    placeholderLabel.style.fontSize = 14;
+                    placeholderLabel.style.height = Length.Percent(100);
                     m_AssetPreview.Add(placeholderLabel);
                 }
             }
