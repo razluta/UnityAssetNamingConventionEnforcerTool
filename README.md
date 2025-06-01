@@ -79,6 +79,14 @@ Assets follow this format: `[GameCategory]_[AssetType]_[AssetName]_[Variant]_[St
 - Unity 2022.3 or higher
 - UIToolkit support
 
+## Version History
+
+See [CHANGELOG.md](CHANGELOG.md) for detailed version history.
+
+## Support
+
+For issues, feature requests, or contributions, please visit the [GitHub repository](https://github.com/razluta/UnityAssetNamingConventionEnforcerTool).
+
 ## License
 
-[Your License Here]
+This tool is provided as-is for educational and commercial use. See the [repository](https://github.com/razluta/UnityAssetNamingConventionEnforcerTool) for specific license terms.
