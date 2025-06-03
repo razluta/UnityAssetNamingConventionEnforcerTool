@@ -98,6 +98,6 @@ See [CHANGELOG.md](CHANGELOG.md) for detailed version history.
 
 For issues, feature requests, or contributions, please visit the [GitHub repository](https://github.com/razluta/UnityAssetNamingConventionEnforcerTool).
 
-## License
+## License 
 
 This tool is provided as-is for educational and commercial use. See the [repository](https://github.com/razluta/UnityAssetNamingConventionEnforcerTool) for specific license terms.
